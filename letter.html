@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Letter</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --ink:#5b2a4a; 
+      --paper:#fff7fb; 
+      --paper-edge:#ffd8f0;
+      --shadow: 0 20px 50px rgba(83, 18, 79, .25);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      color:var(--ink);
+      font-family: Poppins, sans-serif;
+      min-height:100vh;
+      line-height:1.65;
+
+      /* Background with pastel cats + pink-purple overlay */
+      background:
+        linear-gradient(135deg,
+          rgba(255, 154, 216, 0.6),
+          rgba(167, 123, 255, 0.6)
+        ),
+       url("c.avif") center/cover fixed;
+    }
+
+    main{ padding:30px 16px 80px; }
+    .wrap{ max-width:900px; margin:0 auto; position:relative; }
+
+    .floaters{ position:absolute; inset: -40px -20px auto -20px; height: 0; pointer-events:none; }
+    .floater{
+      position:absolute; bottom:-60px; font-size:20px; opacity:.7;
+      animation: rise 10s linear infinite, sway 5s ease-in-out infinite;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,.2));
+    }
+    .floater:nth-child(2){ left:15%; animation-duration:12s; font-size:24px; animation-delay:1s }
+    .floater:nth-child(3){ left:35%; animation-duration:9s;  font-size:18px; animation-delay:2s }
+    .floater:nth-child(4){ left:55%; animation-duration:11s; font-size:22px; animation-delay:3s }
+    .floater:nth-child(5){ left:75%; animation-duration:13s; font-size:26px; animation-delay:1.5s }
+    @keyframes rise { to { transform: translateY(-110vh) } }
+    @keyframes sway {
+      0%,100%{ transform: translateX(0) }
+      50%{ transform: translateX(16px) }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .floater{ display:none }
+    }
+
+    .envelope{
+      position:relative; width:min(920px, 96vw); margin: 40px auto -10px;
+      height:80px;
+      background: linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,255,255,0));
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 55%, 0 100%);
+      border-top-left-radius:12px; border-top-right-radius:12px;
+      box-shadow: var(--shadow);
+    }
+
+    .paper{
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.7)),
+        var(--paper);
+      border:1px solid var(--paper-edge);
+      border-radius:14px;
+      box-shadow: var(--shadow);
+      padding:28px clamp(18px, 4vw, 46px);
+      position:relative;
+    }
+
+    .paper::before{
+      content:"";
+      position:absolute; inset:0; z-index:0; border-radius:14px;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255, 126, 196, .16) 0 34px,
+          rgba(255, 126, 196, .16) 34px 35px
+        );
+      pointer-events:none;
+    }
+
+    .letter{ position:relative; z-index:1; font-size: 1.05rem; }
+    .hand{ font-family: Parisienne, cursive; font-size:2rem; color:#7b2e5e; margin: 0 0 10px 0; }
+
+    .meta{ font-size:.95rem; opacity:.75; margin-bottom:18px; }
+
+    .stamp{
+      position:absolute; right:18px; top:-26px; z-index:2;
+      width:86px; height:86px; border-radius:50%;
+      background: linear-gradient(145deg, #d91d83, #8b1362);
+      border:6px dotted #ffd0ea;
+      display:grid; place-items:center;
+      transform: rotate(-8deg);
+      box-shadow: 0 8px 18px rgba(139, 19, 98, .35);
+    }
+    .stamp span{ font-size:28px; color:#fff; text-shadow:0 2px 6px rgba(0,0,0,.35); }
+
+    .signature{ margin-top:26px; font-family: Parisienne, cursive; font-size:1.8rem; color:#6c1f56; }
+
+    blockquote{
+      margin: 18px 0; padding: 10px 16px;
+      border-left: 4px solid rgba(176,132,255,.55);
+      background: rgba(255,255,255,.45);
+      border-radius: 8px;
+      font-style: italic;
+    }
+
+    footer{ text-align:center; font-size:.9rem; opacity:.8; padding:22px 12px; color:#ffe9f6; }
+  </style>
+</head>
+<body>
+  <!-- Decorative envelope flap -->
+  <div class="envelope" aria-hidden="true"></div>
+
+  <main id="letter" class="wrap">
+    <div class="floaters" aria-hidden="true">
+      <div class="floater">♥</div>
+      <div class="floater">❥</div>
+      <div class="floater">♡</div>
+      <div class="floater">💌</div>
+      <div class="floater">♥</div>
+    </div>
+
+    <article class="paper" role="article" aria-label="Love letter">
+      <div class="stamp" aria-hidden="true"><span>💘</span></div>
+
+      <div class="letter">
+        <h1 class="hand">My Dearest,</h1>
+
+        <div class="meta">
+          <div><time datetime="" id="today"></time></div>
+        </div>
+
+        <p>
+          Happyyyy 19th Birthdayyy Anshika,
+        </p>
+        <p>
+            kaisa lgrha ye
+        </p>
+        
+        <div class="signature">
+          Your dearest, <br>
+          — Izuku.
+        </div>
+      </div>
+    </article>
+  </main>
+
+ 
+
+  <script>
+    // Fill today's date
+    (function(){
+      const el = document.getElementById('today');
+      try{
+        const now = new Date();
+        const nice = new Intl.DateTimeFormat('en', {
+          year:'numeric', month:'long', day:'numeric'
+        }).format(now);
+        el.textContent = nice;
+        el.setAttribute('datetime', now.toISOString().split('T')[0]);
+      }catch(e){}
+    })();
+  </script>
+
+  <style>
+    @media print{
+      .floaters, footer, .stamp { display:none !important; }
+      body{ background:#fff; }
+      .paper{ box-shadow:none; border:1px solid #f3c6df; }
+    }
+  </style>
+</body>
+</html>

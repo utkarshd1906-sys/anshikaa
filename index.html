@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Birthday Room</title>
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: linear-gradient(to bottom right, #ff9ac9, #ff6ec7);
+  /* remove overflow: hidden; */
+}
+.container {
+  position: relative;
+  display: inline-block;
+}
+.xx {
+  display: block;
+  object-fit: contain;
+  max-width: 100%;
+  height: auto;
+}
+.hotspot {
+  position: absolute;
+  cursor: pointer;
+  background: rgba(51, 34, 34,0);
+  border: none;
+}
+</style>
+</head>
+<body>
+
+<!-- 🎶 Background Music -->
+<audio id="bg-music" loop muted preload="auto">
+  <source src="bdaymusic.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<div class="container">
+  <img class="xx" src="birthday.png" alt="Living Room">
+
+  <!-- 🚪 Door Hotspot -->
+  <a href="letter.html" target="_blank" id="doorLink">
+    <div id="door" class="hotspot" style="top: 595px; left: 1110px; width: 120px; height: 37px;"></div>
+  </a>
+
+  <!-- 🎂 Cake Hotspot -->
+  <a href="https://sherryuser.github.io/cake-blow/?utm_source=chatgpt.com" target="_blank" id="cakeLink">
+    <div id="cake" class="hotspot" style="top: 550px; left: 580px; width: 230px; height: 280px;"></div>
+  </a>
+  <!-- 🎂 Cake Hotspot -->
+  <a href="dear.html" target="_blank" id="cakeLink">
+    <div id="dear" class="hotspot" style="top: 750px; left: 1150px; width: 180px; height: 230px;"></div>
+  </a>
+
+  <!-- 🎁 Gift Hotspot -->
+  <a href="gift.html" target="_blank" id="giftLink">
+    <div id="gift" class="hotspot" style="top: 150px; left: 10px; width: 190px; height: 440px;"></div>
+  </a>
+</div>
+
+<script>
+const music = document.getElementById("bg-music");
+const doorLink = document.getElementById("doorLink");
+
+// Try to play muted first
+window.addEventListener("load", () => {
+  music.play().catch(() => {});
+});
+
+// On first interaction: unmute + play
+function enableSound() {
+  music.muted = false;
+  music.play().catch(() => {});
+
+  document.removeEventListener("click", enableSound);
+  document.removeEventListener("touchstart", enableSound);
+  document.removeEventListener("keydown", enableSound);
+}
+
+document.addEventListener("click", enableSound);
+document.addEventListener("touchstart", enableSound);
+document.addEventListener("keydown", enableSound);
+
+// 🚪 Stop music when door is clicked
+doorLink.addEventListener("click", () => {
+  music.pause();
+  music.currentTime = 0; // reset to beginning
+});
+</script>
+
+</body>
+</html>
