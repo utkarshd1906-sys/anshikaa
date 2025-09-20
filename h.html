@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Letter Page</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #c2a676, #a0522d, #8b5a2b, #d2b48c);
+      background-size: 400% 400%;
+      animation: gradientMove 15s ease infinite;
+      font-family: Arial, sans-serif;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .letter-container {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      max-width: 90%;
+      max-height: 80%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .letter-container img {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="letter-container">
+    <img src="let.jpeg" alt="My Letter">
+  </div>
+</body>
+</html>
